@@ -4,13 +4,13 @@ import { downloadImage } from '../utils'
 const Card = ({_id, name, prompt, photo}) => {
   
   const handleTwitterShare = () => {
-    // Assuming your 'photo' prop contains the URL of the image
+    
     const tweetText = `Check out this amazing image created on \n${'https://imaginesomething.netlify.app/'}\nBy: ${name} \n\n${prompt}\n${photo}`;
 
-    // Create the Twitter share URL
+    
     const twitterShareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
 
-    // Open the tweet composer URL
+   
     window.open(twitterShareUrl, '_blank');
   };
   

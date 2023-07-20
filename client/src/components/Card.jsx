@@ -1,7 +1,19 @@
 import React from 'react'
-import { download } from '../assets'
+import { download , tlogo} from '../assets'
 import { downloadImage } from '../utils'
 const Card = ({_id, name, prompt, photo}) => {
+  
+  const handleTwitterShare = () => {
+    // Assuming your 'photo' prop contains the URL of the image
+    const tweetText = `Check out this amazing image created on \n${'https://imaginesomething.netlify.app/'}\nBy: ${name} \n\n${prompt}\n${photo}`;
+
+    // Create the Twitter share URL
+    const twitterShareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+
+    // Open the tweet composer URL
+    window.open(twitterShareUrl, '_blank');
+  };
+  
   return (
     <div className="rounded-xl group relative shadow-card hover:shadow-cardhover card">
       <img 
@@ -18,9 +30,15 @@ const Card = ({_id, name, prompt, photo}) => {
             </div>
             <p className='text-white text-sm'>{name}</p>
           </div>
-          <button type='button' onClick={()=>downloadImage(_id,photo)} className="outline-none bg-transparent border-none">
-            <img src={download} alt='download' className='w-6 h-6 object-contain invert' />
-          </button>
+          <div className='flex gap-2 items-center'>
+            <button type='button' onClick={()=>downloadImage(_id, photo)} className="outline-none bg-transparent border-none">
+              <img src={download} alt='download' className='w-6 h-6 object-contain invert' />
+            </button>
+            <button type='button' onClick={handleTwitterShare} className="outline-none bg-transparent border-none">
+              <img src={tlogo} alt='Twitter' className='w-6 h-6 object-contain invert' />
+            </button>
+          </div>
+
         </div>
       </div>
     </div>
